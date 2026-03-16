@@ -1,0 +1,421 @@
+/* =====================================================
+   Wedding Invitation – Ahmed & Shahd
+   ===================================================== */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --gold:      #c9a84c;
+  --gold-light:#f0d080;
+  --gold-dark: #8b6914;
+  --cream:     #fdf6e3;
+  --ivory:     #f9f0d8;
+  --rose:      #e8b4b8;
+  --deep:      #3d2b1f;
+  --env-w: 380px;
+  --env-h: 260px;
+}
+
+/* ── Body / Background ─────────────────────────────── */
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0f0a15 0%, #2d1b3d 50%, #0f0a15 100%);
+  font-family: 'Playfair Display', serif;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── Floating Petals ───────────────────────────────── */
+.petals-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.petal {
+  position: absolute;
+  top: -40px;
+  font-size: 1.4rem;
+  opacity: 0.6;
+  animation: fallPetal linear infinite;
+}
+
+@keyframes fallPetal {
+  0%   { transform: translateY(0) rotate(0deg);   opacity: .7; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+/* ── Scene ─────────────────────────────────────────── */
+.scene {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+/* ── Hint ──────────────────────────────────────────── */
+.hint {
+  color: var(--gold-light);
+  font-size: 1rem;
+  letter-spacing: .05em;
+  opacity: .85;
+  animation: pulse 2s ease-in-out infinite;
+  transition: opacity .4s;
+}
+.hint.hidden { opacity: 0; pointer-events: none; }
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.05); }
+}
+
+/* ── Envelope Wrapper ──────────────────────────────── */
+.envelope-wrapper {
+  position: relative;
+  width: var(--env-w);
+  height: var(--env-h);
+  cursor: pointer;
+  /* card will overflow upward */
+  overflow: visible;
+}
+
+/* ── Card ──────────────────────────────────────────── */
+.card {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, 100vh);
+  width: 90vw;
+  max-width: 450px;
+  max-height: 85vh;
+  background: var(--cream);
+  border: 1.5px solid var(--gold);
+  border-radius: 6px;
+  z-index: 1;
+  transition: transform 1s cubic-bezier(.22,1,.36,1), opacity .6s ease;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 20px 60px rgba(0,0,0,.5);
+  overflow-y: auto;
+}
+
+.card.open {
+  transform: translate(-50%, -50%);
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 100;
+}
+
+.card-inner {
+  padding: 14px 16px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+  color: var(--deep);
+  position: relative;
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: var(--gold);
+  border: none;
+  color: #fff;
+  font-size: 1.8rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: all .3s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,.2);
+  z-index: 10;
+}
+
+.close-btn:hover {
+  background: var(--gold-dark);
+  transform: rotate(90deg);
+}
+
+/* Decorative border inside card */
+.card-inner::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1px solid var(--gold);
+  opacity: .4;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.card-ornament {
+  color: var(--gold);
+  font-size: 1.2rem;
+  line-height: 1;
+}
+.card-ornament.bottom { transform: scaleY(-1); }
+
+.card-subtitle {
+  font-size: .7rem;
+  color: var(--gold-dark);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+/* Couple illustration */
+.couple-illustration {
+  width: 100%;
+  max-width: 140px;
+  margin: 3px 0;
+}
+
+.couple-illustration img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.card-names {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--deep);
+  line-height: 1.1;
+  font-style: italic;
+}
+
+.card-tagline {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: .85rem;
+  color: var(--gold-dark);
+  margin-top: -3px;
+  letter-spacing: .03em;
+}
+
+.divider {
+  display: flex;
+  gap: 6px;
+  color: var(--gold);
+  font-size: .75rem;
+  opacity: .8;
+}
+
+.card-body {
+  font-size: .9rem;
+  color: #5a3e2b;
+  line-height: 1.5;
+}
+
+/* Date block */
+.card-date-block {
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+  color: #fff;
+  border-radius: 5px;
+  padding: 8px 20px;
+  width: 100%;
+  margin: 2px 0;
+}
+.card-label {
+  font-size: .65rem;
+  letter-spacing: .16em;
+  opacity: .9;
+  margin-bottom: 3px;
+  font-weight: 600;
+}
+.card-date {
+  font-size: 1.3rem;
+  font-weight: 700;
+  font-family: 'Playfair Display', serif;
+}
+.card-day {
+  font-size: .75rem;
+  opacity: .95;
+  margin-top: 1px;
+  font-style: italic;
+}
+
+/* Location block */
+.card-location-block { 
+  width: 100%; 
+  margin: 2px 0;
+}
+.card-location {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--deep);
+  font-family: 'Playfair Display', serif;
+}
+.card-street {
+  font-size: .75rem;
+  color: #6b4c33;
+  margin-top: 2px;
+}
+
+/* Footer message */
+.card-footer {
+  margin-top: 4px;
+  margin-bottom: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--gold);
+  opacity: 1;
+  width: 100%;
+}
+
+.card-footer p {
+  font-size: .9rem;
+  font-style: italic;
+  color: #000;
+  font-weight: 500;
+}
+
+/* ── Envelope ──────────────────────────────────────── */
+.envelope {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  transition: transform .6s ease .8s;
+}
+
+/* All four triangular folds share clip-path technique */
+.env-bottom,
+.env-left,
+.env-right,
+.env-flap,
+.env-front {
+  position: absolute;
+}
+
+/* Bottom triangle */
+.env-bottom {
+  bottom: 0; left: 0;
+  width: 0; height: 0;
+  border-left: calc(var(--env-w)/2) solid transparent;
+  border-right: calc(var(--env-w)/2) solid transparent;
+  border-bottom: calc(var(--env-h) * 0.55) solid #d4a853;
+}
+
+/* Left fold */
+.env-left {
+  bottom: 0; left: 0;
+  width: 0; height: 0;
+  border-top: var(--env-h) solid transparent;
+  border-left: calc(var(--env-w)/2) solid #c9973a;
+}
+
+/* Right fold */
+.env-right {
+  bottom: 0; right: 0;
+  width: 0; height: 0;
+  border-top: var(--env-h) solid transparent;
+  border-right: calc(var(--env-w)/2) solid #b88530;
+}
+
+/* Front face (covers center) */
+.env-front {
+  inset: 0;
+  background: var(--ivory);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  /* actual visible envelope face – just ivory fill */
+  background: linear-gradient(160deg, #f9f0d8 60%, #f0ddb0 100%);
+  z-index: 2;
+}
+
+/* ── Flap ──────────────────────────────────────────── */
+.env-flap {
+  top: 0; left: 0;
+  width: 100%;
+  height: 0;
+  border-left: calc(var(--env-w)/2) solid transparent;
+  border-right: calc(var(--env-w)/2) solid transparent;
+  border-top: calc(var(--env-h) * 0.5) solid #e2b95a;
+  transform-origin: top center;
+  transform: rotateX(0deg);
+  transition: transform .7s cubic-bezier(.68,-.55,.27,1.55) .1s,
+              border-top-color .3s;
+  z-index: 10;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,.3));
+}
+
+.env-flap.open {
+  transform: rotateX(-180deg);
+  border-top-color: #c9973a;
+}
+
+/* ── Wax Seal ──────────────────────────────────────── */
+.wax-seal {
+  position: absolute;
+  top: calc(var(--env-h) * 0.18);
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 52px; height: 52px;
+  background: radial-gradient(circle at 35% 35%, #c0392b, #8b0000);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 3px 10px rgba(0,0,0,.4), inset 0 1px 3px rgba(255,255,255,.2);
+  transition: transform .4s ease, opacity .4s ease;
+  z-index: 11;
+  cursor: pointer;
+  animation: sealPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes sealPulse {
+  0%, 100% { box-shadow: 0 3px 10px rgba(0,0,0,.4), 0 0 0 0 rgba(192,57,43,.5); }
+  50%       { box-shadow: 0 3px 10px rgba(0,0,0,.4), 0 0 0 12px rgba(192,57,43,0); }
+}
+
+.wax-seal.cracked {
+  animation: none;
+  transform: translateX(-50%) translateY(-50%) scale(0) rotate(45deg);
+  opacity: 0;
+}
+
+/* ── Envelope opened state ─────────────────────────── */
+.envelope.opened {
+  transform: translateY(30px) scale(.97);
+}
+
+/* ── Sparkle burst ─────────────────────────────────── */
+.sparkle {
+  position: fixed;
+  pointer-events: none;
+  font-size: 1.6rem;
+  z-index: 999;
+  animation: sparkleAnim 1.2s ease-out forwards;
+}
+
+@keyframes sparkleAnim {
+  0%   { transform: translate(0,0) scale(1); opacity: 1; }
+  100% { transform: translate(var(--tx), var(--ty)) scale(.2); opacity: 0; }
+}
+
+/* ── Responsive ────────────────────────────────────── */
+@media (max-width: 440px) {
+  :root {
+    --env-w: 310px;
+    --env-h: 210px;
+  }
+  .card { width: 95vw; max-width: 340px; }
+  .card-names { font-size: 1.6rem; }
+  .couple-illustration { max-width: 120px; }
+  .card-inner { padding: 12px 12px 10px; gap: 3px; }
+  .card-date { font-size: 1.15rem; }
+  .card-location { font-size: 1rem; }
+}

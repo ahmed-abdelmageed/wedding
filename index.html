@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wedding Invitation – Ahmed & Shahd</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Floating petals background -->
+  <div class="petals-container" id="petals"></div>
+
+  <!-- Scene -->
+  <div class="scene" id="scene">
+
+    <!-- Hint text -->
+    <p class="hint" id="hint">✉️ Click on the envelope to open the invitation</p>
+
+    <!-- Envelope wrapper -->
+    <div class="envelope-wrapper" id="envelopeWrapper">
+
+      <!-- The card sits behind the envelope -->
+      <div class="card" id="card">
+        <div class="card-inner">
+
+          <!-- Decorative top -->
+          <div class="card-ornament top">❧</div>
+
+
+          <!-- Close button -->
+          <button class="close-btn" id="closeBtn">&times;</button>
+
+          <!-- Couple illustration -->
+          <div class="couple-illustration">
+            <img src="images/couple.png" alt="Wedding Couple" />
+          </div>
+
+          <h1 class="card-names">Ahmed &amp; Shahd</h1>
+          <p class="card-tagline">Two hearts, One soul</p>
+
+          <div class="divider">
+            <span>✦</span>
+            <span>✦</span>
+            <span>✦</span>
+          </div>
+
+<div class="card-footer">
+            <p>You're invited! Our day will be complete with you ♡</p>
+          </div>
+          <div class="card-date-block">
+            <p class="card-label">DATE</p>
+            <p class="card-date">28th May 2026</p>
+            <p class="card-day">Thursday</p>
+          </div>
+
+          <div class="divider">
+            <span>🌸</span>
+          </div>
+
+          <div class="card-location-block">
+            <p class="card-label">VENUE</p>
+            <p class="card-location">Dar El Morkbat</p>
+          </div>
+
+          
+
+          <div class="card-ornament bottom">❧</div>
+
+        </div>
+      </div>
+
+      <!-- Envelope body -->
+      <div class="envelope" id="envelope">
+
+        <!-- Bottom triangle fold -->
+        <div class="env-bottom"></div>
+
+        <!-- Left fold -->
+        <div class="env-left"></div>
+
+        <!-- Right fold -->
+        <div class="env-right"></div>
+
+        <!-- Flap (top) -->
+        <div class="env-flap" id="envFlap">
+          <!-- Wax seal -->
+          <div class="wax-seal" id="waxSeal">💍</div>
+        </div>
+
+        <!-- Envelope front face (keeps color on top) -->
+        <div class="env-front"></div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
